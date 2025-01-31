@@ -1,0 +1,39 @@
+//Find maximum sum of a subarray of size k using sliding window
+#include <iostream>
+#include <climits> // For INT_MIN
+
+using namespace std;
+
+int maximumSumSubarrayK(int arr[], int n, int k) {
+   
+    int sum = 0;
+    for (int i = 0; i < k; i++) {
+        sum += arr[i];
+    }
+
+    int maxSum = sum;  // Initialize max sum as the first window's sum
+    int maxIdx = 0;
+
+    // Sliding window technique
+    for (int i = 1, j = k; j < n; i++, j++) {
+        sum = sum + arr[j] - arr[i - 1]; // Slide the window forward
+        if (sum > maxSum) {
+            maxSum = sum;
+            maxIdx = i;
+        }
+    }
+
+    return maxSum;
+}
+
+int main() {
+    int arr[] = {7, 9, 2, 5, 8};
+    int k = 3;
+    int n = sizeof(arr) / sizeof(arr[0]);
+
+    cout << "Maximum sum of subarray of size " << k << " is: " << maximumSumSubarrayK(arr, n, k) << endl;
+
+    return 0;
+}
+// ***OUTPUT***
+//Maximum sum of subarray of size 3 is: 18
