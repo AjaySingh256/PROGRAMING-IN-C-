@@ -1,0 +1,81 @@
+// Matrix Multiplicatin
+#include<iostream>
+using namespace std;
+int main()
+{
+int m;
+cout<<"enter row of 1st matrix:";
+cin>>m;
+int n;
+cout<<"enter cols of 1st matrix:";
+cin>>n;
+
+int p;
+cout<<"enter row of 2nd matrix:";
+cin>> p;
+int q;
+cout<<"enter cols of 2nd matrix:";
+cin>> q;
+
+if(n==p){
+int a[m][n];
+cout<<"Enter elements of 1st matrix : ";
+for(int i=0;i<m;i++){
+    for(int j=0;j<n;j++){
+        cin>>a[i][j];
+    }
+}
+int b[p][q];
+cout<<"Enter elements of 2nd matrix :";
+for(int i=0;i<p;i++){
+    for(int j=0;j<q;j++){
+        cin>>b[i][j];
+    }
+}
+//resutent matrix
+
+int res[m][q];
+for(int i=0;i<m;i++){
+    for(int j=0;j<q;j++){
+        // multiply
+        ////res[i][j] = a[i][0]*b[0][j] + a[i][1]*b[1][j] + 
+        res[i][j]=0;
+        for(int k=0;k<p;k++){
+            res[i][j] +=a[i][k]*b[k][j];
+
+        }
+    }
+}
+//print
+for(int i=0;i<m;i++){
+    for(int j=0;j<q;j++){
+        cout<<res[i][j]<<" ";
+            
+        }
+        cout<<endl;
+    }
+}
+else{// n!=p
+cout<<"The matrices cannot be multiplied";
+
+}
+}
+// ***OUTPUT***
+// enter row of 1st matrix:2
+// enter cols of 1st matrix:3
+// enter row of 2nd matrix:3
+// enter cols of 2nd matrix:2
+// Enter elements of 1st matrix : 1
+// 2
+// 3
+// 4
+// 5
+// 6
+// Enter elements of 2nd matrix :7
+// 8
+// 9
+// 4
+// 5
+// 6
+// 40 34 
+// 103 88 
