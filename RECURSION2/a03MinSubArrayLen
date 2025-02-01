@@ -1,0 +1,33 @@
+#include <iostream>
+#include <vector>
+#include <climits>
+
+using namespace std;
+
+class Solution {
+public:
+    int minSubArrayLen(int target, vector<int>& nums) {
+        int n = nums.size();
+        int i = 0, sum = 0, minlen = INT_MAX;
+
+        for (int j = 0; j < n; j++) {
+            sum += nums[j];
+
+            while (sum >= target) {  // Shrink the window
+                minlen = min(minlen, j - i + 1);
+                sum -= nums[i++];
+            }
+        }
+        
+        return (minlen == INT_MAX) ? 0 : minlen;
+    }
+};
+
+int main() {
+    Solution sol;
+    vector<int> nums = {2, 3, 1, 2, 4, 3};
+    int target = 7;
+    
+    cout << "Minimum Subarray Length: " << sol.minSubArrayLen(target, nums) << endl;
+    return 0;
+}
