@@ -1,0 +1,25 @@
+//Find Sqrt Binary Search
+#include<iostream>
+using namespace std;
+int Sqrt(int x){
+int lo =0, hi = x;
+while(lo<=hi){
+    int mid = lo+(hi-lo)/2;
+    long long square =(long long)mid*mid;
+
+    if(square==x) return mid;
+    else if(square > x) hi  = mid - 1;
+    else lo = mid+1;
+}
+   return hi; // hi is the largest integer whose square is <=x
+}
+int main(){
+    int x;
+    cout<<"Enter a number:";
+    cin>>x;
+    cout<<"Square root of "<<x<<" is: "<<Sqrt(x)<<endl;
+    return 0;
+}
+// ***OUTPUT***
+// Enter a number:36
+// Square root of 36 is: 6
