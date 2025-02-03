@@ -8,6 +8,7 @@ int main(){
         cout<<arr[i]<<" ";
 
     }
+ //bubble sort optimised 
  for(int i=0;i<n-1;i++){//n-1 passes
       // traverse
       bool flag = true;
