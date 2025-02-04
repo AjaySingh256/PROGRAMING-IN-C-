@@ -1,0 +1,20 @@
+#include<iostream>
+#include<string>
+using namespace std;
+int binary_to_decimal(string &binary){
+    int n= binary.size();
+    int res = 0;
+    for(int i=n-1;i>=0;i--) {
+    char ch = binary[i];
+    int num = ch - '0';
+    res += num*(1  << (n-i-1));
+    }
+    return res;
+}
+int main(){
+    string str = "001111";
+    cout<<binary_to_decimal(str)<<"\n";
+    return 0;
+}
+//***OUTPUT***
+//15
