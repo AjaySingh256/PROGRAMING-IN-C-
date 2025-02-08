@@ -1,0 +1,49 @@
+//Isomorphim
+#include <iostream>
+#include <string>
+
+using namespace std;
+
+bool isIsomorphic(string s, string t) {
+    if (s.length() != t.length()) return false;
+
+    int sarr[128] = {1};  // Mapping for s to t
+    int tarr[128] = {0};  // Mapping for t to s
+
+    for (int i = 0; i < s.length(); i++) {
+        if (sarr[s[i]] != tarr[t[i]]) {
+            return false;
+        }
+        sarr[s[i]] = i + 1;
+        tarr[t[i]] = i + 1;
+    }
+
+    return true;
+}
+
+int main() {
+    string s, t;
+
+    // Input strings
+    cout << "Enter first string: ";
+    cin >> s;
+
+    cout << "Enter second string: ";
+    cin >> t;
+
+    // Check if the strings are isomorphic
+    bool result = isIsomorphic(s, t);
+
+    // Output result
+    if (result) {
+        cout << "The strings are isomorphic." << endl;
+    } else {
+        cout << "The strings are not isomorphic." << endl;
+    }
+
+    return 0;
+}
+//***OUTPUT***
+// Enter first string: English
+// Enter second string: Silent
+// The strings are not isomorphic.
