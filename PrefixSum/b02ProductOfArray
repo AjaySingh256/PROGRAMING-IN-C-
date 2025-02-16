@@ -1,0 +1,32 @@
+//product of array Except Self
+#include <iostream>
+
+int main() {
+    int nums[] = {1, 2, 3, 4};  // Example input
+    int n = sizeof(nums) / sizeof(nums[0]);
+    int pre[n];
+
+    // Prefix product calculation
+    pre[0] = 1;
+    int p = nums[0];
+    for (int i = 1; i < n; i++) {
+        pre[i] = p;
+        p *= nums[i];
+    }
+
+    // Suffix product calculation (modifying prefix array)
+    p = nums[n - 1];
+    for (int i = n - 2; i >= 0; i--) {
+        pre[i] *= p;
+        p *= nums[i];
+    }
+
+    // Output the result
+    for (int i = 0; i < n; i++) {
+        std::cout << pre[i] << " ";
+    }
+
+    return 0;
+}
+//***OUTPUT***
+//24 12 8 6 
