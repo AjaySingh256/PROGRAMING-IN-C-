@@ -1,0 +1,55 @@
+//Reducing-Dishes
+#include <iostream>
+using namespace std;
+
+void swap(int &a, int &b) {
+    int temp = a;
+    a = b;
+    b = temp;
+}
+
+void sortArray(int arr[], int n) {
+    for (int i = 0; i < n - 1; i++) {
+        for (int j = 0; j < n - i - 1; j++) {
+            if (arr[j] > arr[j + 1]) {
+                swap(arr[j], arr[j + 1]);
+            }
+        }
+    }
+}
+
+int maxSatisfaction(int satisfaction[], int n) {
+    sortArray(satisfaction, n);
+    int suf[n];
+    suf[n - 1] = satisfaction[n - 1];
+    
+    for (int i = n - 2; i >= 0; i--) {
+        suf[i] = suf[i + 1] + satisfaction[i];
+    }
+    
+    int idx = -1;
+    for (int i = 0; i < n; i++) {
+        if (suf[i] >= 0) {
+            idx = i;
+            break;
+        }
+    }
+    if (idx == -1) return 0;
+    
+    int x = 1;
+    int maxSum = 0;
+    for (int i = idx; i < n; i++) {
+        maxSum += (satisfaction[i] * x);
+        x++;
+    }
+    return maxSum;
+}
+
+int main() {
+    int satisfaction[] = {-1, -8, 0, 5, -9};
+    int n = sizeof(satisfaction) / sizeof(satisfaction[0]);
+    cout << "Max Satisfaction: " << maxSatisfaction(satisfaction, n) << endl;
+    return 0;
+}
+//***OUTPUT***
+//Max Satisfaction: 14
