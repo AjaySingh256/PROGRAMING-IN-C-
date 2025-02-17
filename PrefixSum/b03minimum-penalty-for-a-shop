@@ -1,0 +1,45 @@
+// minimum-penalty-for-a-shop
+#include <iostream>
+using namespace std;
+
+int bestClosingTime(string customers) {
+    int n = customers.length();
+    int pre[n + 1]; // Number of 'N' before k-th hour
+    int suf[n + 1]; // Number of 'Y' after and including k-th hour
+
+    pre[0] = 0; // Initialize prefix array
+    suf[n] = 0; // Initialize suffix array
+
+    // Compute prefix sum for 'N'
+    for (int i = 0; i < n; i++) {
+        pre[i + 1] = pre[i] + (customers[i] == 'N' ? 1 : 0);
+    }
+
+    // Compute suffix sum for 'Y'
+    for (int i = n - 1; i >= 0; i--) {
+        suf[i] = suf[i + 1] + (customers[i] == 'Y' ? 1 : 0);
+    }
+
+    int minPen = n, bestHour = 0;
+
+    // Find the minimum penalty and best closing time
+    for (int i = 0; i <= n; i++) {
+        int pen = pre[i] + suf[i];
+        if (pen < minPen) {
+            minPen = pen;
+            bestHour = i;
+        }
+    }
+
+    return bestHour;
+}
+
+// Driver code
+int main() {
+    string customers;
+    cin >> customers;
+    cout << bestClosingTime(customers) << endl;
+    return 0;
+}
+//YYNYY
+//5
