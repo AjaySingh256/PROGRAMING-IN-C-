@@ -1,0 +1,35 @@
+// Sum of Square Number
+#include <iostream>
+#include <cmath>
+
+using namespace std;  // Avoids using std::
+
+bool isPerfectSquare(int n) {
+    int root = sqrt(n);
+    return root * root == n;
+}
+
+bool judgeSquareSum(int c) {
+    for (int a = 0; a * a <= c; a++) {  // Iterate `a` from 0 to sqrt(c)
+        int b2 = c - (a * a);  // Compute b^2
+        if (isPerfectSquare(b2))  // Check if b^2 is a perfect square
+            return true;
+    }
+    return false;
+}
+
+int main() {
+    int c;
+    cout << "Enter a number: ";
+    cin >> c;
+    
+    if (judgeSquareSum(c))
+        cout << "Yes, " << c << " can be expressed as the sum of two squares.\n";
+    else
+        cout << "No, " << c << " cannot be expressed as the sum of two squares.\n";
+
+    return 0;
+}
+// ***OUTPUT***
+// Enter a number: 5
+// Yes, 5 can be expressed as the sum of two squares.
