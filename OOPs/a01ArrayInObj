@@ -1,0 +1,42 @@
+// Array use Obj
+#include<iostream>
+using namespace std;
+
+class Cricketer{
+    public:
+  char name;
+  int age;
+  int noOfTestMatches;
+  int averageScore;
+};
+int main(){
+    Cricketer rohit;
+    rohit.name='R';
+    rohit.age=36;
+    rohit.noOfTestMatches=100;
+    rohit.averageScore=80;
+
+    Cricketer virat;
+    virat.name='V';
+    virat.age=35;
+    virat.noOfTestMatches=150;
+    virat. averageScore=60;
+
+    Cricketer  cricketers[2] = {rohit, virat};
+    for(int i=0;i<2;i++){
+    cout<<cricketers[i].name<<endl;
+    cout<<cricketers[i].age<<endl;
+    cout<<cricketers[i].noOfTestMatches<<endl;
+    cout<<cricketers[i].averageScore<<endl;
+    }
+}
+// ***OUTPUT***
+// R
+// 36
+// 100
+// 80
+
+// V
+// 35
+// 150
+// 60
