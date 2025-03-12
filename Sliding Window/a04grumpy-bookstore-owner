@@ -1,0 +1,61 @@
+//grumpy-bookstore-owner
+#include <iostream>
+using namespace std;
+
+int maxSatisfied(int customers[], int grumpy[], int n, int minutes) {
+    int k = minutes;
+    int prevLoss = 0;
+
+    // Compute initial loss for the first "minutes" window
+    for (int i = 0; i < k; i++) {
+        if (grumpy[i] == 1) prevLoss += customers[i];
+    }
+
+    int maxLoss = prevLoss;
+    int maxIdx = 0;
+    int i = 1, j = k;
+
+    // Sliding window approach to find the maximum loss window
+    while (j < n) {
+        int currLoss = prevLoss;
+        if (grumpy[j] == 1) currLoss += customers[j];
+        if (grumpy[i - 1] == 1) currLoss -= customers[i - 1];
+
+        if (maxLoss < currLoss) {
+            maxLoss = currLoss;
+            maxIdx = i;
+        }
+        prevLoss = currLoss;
+        i++;
+        j++;
+    }
+
+    // Fill 0s in the grumpy array window
+    for (int i = maxIdx; i < maxIdx + k; i++) {
+        grumpy[i] = 0;
+    }
+
+    // Compute maximum satisfaction
+    int totalSatisfied = 0;
+    for (int i = 0; i < n; i++) {
+        if (grumpy[i] == 0) totalSatisfied += customers[i];
+    }
+
+    return totalSatisfied;
+}
+
+int main() {
+    int customers[] = {1, 0, 1, 2, 1, 1, 7, 5};  // Example input
+    int grumpy[] = {0, 1, 0, 1, 0, 1, 0, 1};
+    int n = sizeof(customers) / sizeof(customers[0]);
+    int minutes = 3;
+
+    cout << "Max satisfied customers: " << maxSatisfied(customers, grumpy, n, minutes) << endl;
+
+    return 0;
+}
+// ***OUTPUT***
+//Max satisfied customers: 16
+
+
+
