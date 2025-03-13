@@ -1,0 +1,42 @@
+///longest-subsequence-with-limited-sum
+#include <iostream>
+#include <algorithm>
+using namespace std;
+void answerQueries(int nums[], int n, int queries[], int m, int ans[]) {
+    // Sort nums
+    sort(nums, nums + n);
+
+    // Convert nums into prefix sum array
+    for (int i = 1; i < n; i++) {
+        nums[i] += nums[i - 1];
+    }
+    // Process each query
+    for (int i = 0; i < m; i++) {
+        int len = 0;
+        for (int j = 0; j < n; j++) {
+            if (nums[j] > queries[i]) break;
+            len++;
+        }
+        ans[i] = len;
+    }
+}
+
+int main() {
+    int nums[] = {4, 5, 2, 1}; 
+    int queries[] = {3, 10, 21}; 
+    int n = sizeof(nums) / sizeof(nums[0]);
+    int m = sizeof(queries) / sizeof(queries[0]);
+    int ans[m];
+
+    answerQueries(nums, n, queries, m, ans);
+
+    // Print the result
+    for (int i = 0; i < m; i++) {
+        cout << ans[i] << " ";
+    }
+    cout << endl;
+
+    return 0;
+}
+// ***OUTPUT***
+// 2 3 4 
