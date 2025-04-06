@@ -1,0 +1,61 @@
+// Node Class
+#include<iostream>
+using namespace std;
+class Node{//Link List Node
+ public:
+ int val;
+ Node* next;
+ Node(int val){
+    this->val = val;
+    this->next = NULL;
+ }
+};
+void display(Node* head){
+    while(head!= NULL){
+    cout<<head->val<<" ";
+    head = head->next;
+}
+cout<<endl;
+}
+int size(Node* head){
+    Node* temp = head;
+    int n = 0;
+
+while(temp!=NULL){
+    n++;
+    temp = temp->next;
+}
+return n;
+}
+void revdisplay(Node* head){
+    if(head==NULL) return; //base case
+    revdisplay(head->next); //call      // kaam and call ko interchange krne pe reverse ho jayega
+    cout<<head->val<<" ";  // kaam 
+
+}
+
+void displayrac(Node* head){
+    if(head==NULL) return; //base case
+    cout<<head->val<<" ";   // kaam
+    displayrac(head->next); //call
+     cout<<endl;                                 
+}
+int main() {
+    Node* a = new Node(10);
+    Node* b = new Node(20);
+    Node* c = new Node(30);
+    Node* d = new Node(40);
+    Node* e = new Node(50);
+    a->next = b;
+    b->next = c;
+    c->next = d;
+    d->next = e;
+    Node* temp = a;
+    displayrac(a);
+    revdisplay(a);
+}
+ 
+// ****OUTPUT**
+// 10 20 30 40 50
+
+// 50 40 30 20 10
