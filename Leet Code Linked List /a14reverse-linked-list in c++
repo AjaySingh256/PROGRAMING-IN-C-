@@ -1,4 +1,33 @@
 //reverse-linked-list
+class Solution {
+public:
+
+    ListNode* reverseList(ListNode* head) {
+        ListNode* prev = NULL;
+        ListNode* curr = head;
+        ListNode* Next = head;
+        while(curr!=NULL){
+            Next = curr->next;
+            curr->next = prev;
+            prev = curr;
+            curr = Next;
+        }
+        return prev;
+    }
+};
+
+
+
+
+
+
+
+
+
+
+
+
+// another method
 
 class Solution {
 public:
@@ -31,3 +60,7 @@ public:
         return head;
     }
 };
+
+
+
+
