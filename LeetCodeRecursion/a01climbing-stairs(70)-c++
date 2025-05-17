@@ -1,0 +1,13 @@
+class Solution {
+public:
+    int climbStairs(int n) {
+        if (n <= 1) return 1;
+        int first = 1, sec = 1,curr;
+        for(int i=2;i<=n;i++){
+            curr = first + sec;
+            first =  sec;
+            sec = curr;
+        }
+        return sec;
+    }
+};
