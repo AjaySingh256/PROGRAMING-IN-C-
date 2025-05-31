@@ -1,0 +1,26 @@
+class Solution {
+public:
+    string reverseWords(string s) {
+        vector<string> words;
+        string word;
+        stringstream ss(s);
+
+        // Extract words, ignoring extra spaces
+        while (ss >> word) {
+            words.push_back(word);
+        }
+
+        // Reverse the word order
+        reverse(words.begin(), words.end());
+
+        // Join words with a space
+        string result;
+        for (int i = 0; i < words.size(); ++i) {
+            result += words[i];
+            if (i < words.size() - 1)
+                result += " ";
+        }
+
+        return result;
+    }
+};
