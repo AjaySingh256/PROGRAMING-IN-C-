@@ -1,0 +1,31 @@
+class Solution {
+public:
+    int compress(vector<char>& chars) {
+        int w = 0;  // write pointer
+        int r = 0;  // read pointer
+
+        while (r < chars.size()) {
+            char currchar = chars[r];
+            int count = 0;
+
+            // Count how many times currchar repeats
+            while (r < chars.size() && chars[r] == currchar) {
+                r++;
+                count++;
+            }
+
+            // Write the character
+            chars[w++] = currchar;
+
+            // If count > 1, write the count digits
+            if (count > 1) {
+                string countstr = to_string(count);
+                for (char c : countstr) {
+                    chars[w++] = c;
+                }
+            }
+        }
+
+        return w;
+    }
+};
