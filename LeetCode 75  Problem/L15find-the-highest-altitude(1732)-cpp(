@@ -1,0 +1,14 @@
+class Solution {
+public:
+    int largestAltitude(vector<int>& gain) {
+        int MA = 0;
+        int c =0;
+        for(int i=0;i<gain.size();i++){
+            c+=gain[i];
+            if(c>MA){
+                MA = c;
+            }
+        }
+        return MA;
+    }
+};
