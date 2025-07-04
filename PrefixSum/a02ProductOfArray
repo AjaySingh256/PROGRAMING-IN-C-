@@ -1,4 +1,4 @@
-//product of array Except Self
+//product of array Exncept Self
 #include <iostream>
 
 int main() {
