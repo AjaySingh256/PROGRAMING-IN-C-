@@ -1,0 +1,28 @@
+class Solution {
+public:
+    vector<int> rightSideView(TreeNode* root) {
+        vector<int> result;
+        if (!root) return result;
+
+        queue<TreeNode*> q;
+        q.push(root);
+
+        while (!q.empty()) {
+            int levelSize = q.size();
+            for (int i = 0; i < levelSize; ++i) {
+                TreeNode* current = q.front();
+                q.pop();
+
+                // Save the rightmost element at each level
+                if (i == levelSize - 1) {
+                    result.push_back(current->val);
+                }
+
+                if (current->left) q.push(current->left);
+                if (current->right) q.push(current->right);
+            }
+        }
+
+        return result;
+    }
+};
