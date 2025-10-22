@@ -1,0 +1,29 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+class Solution {
+public:
+    string simplifyPath(string path) {
+        stack<string> st;
+        string dir;
+        stringstream ss(path);
+        
+        while (getline(ss, dir, '/')) {
+            if (dir == "" || dir == ".") continue; // skip empty or current dir
+            else if (dir == "..") {
+                if (!st.empty()) st.pop(); // go up one level
+            } else {
+                st.push(dir); // add valid directory
+            }
+        }
+
+        // construct simplified path
+        string res;
+        while (!st.empty()) {
+            res = "/" + st.top() + res;
+            st.pop();
+        }
+
+        return res.empty() ? "/" : res;
+    }
+};
