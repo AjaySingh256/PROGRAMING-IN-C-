@@ -1,0 +1,18 @@
+#include <string>
+#include <algorithm>
+
+class Solution {
+public:
+    string toHex(int num) {
+        if (num == 0) return "0";
+        unsigned int n = static_cast<unsigned int>(num); // handles negative via two's complement
+        const char *hex = "0123456789abcdef";
+        string res;
+        while (n) {
+            res.push_back(hex[n & 0xF]);
+            n >>= 4;
+        }
+        reverse(res.begin(), res.end());
+        return res;
+    }
+};
