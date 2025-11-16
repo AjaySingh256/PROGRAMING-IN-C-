@@ -1,0 +1,24 @@
+class Solution {
+public:
+    vector<int> findDisappearedNumbers(vector<int>& nums) {
+        int n = nums.size();
+        
+        // Step 1: Mark visited numbers by making them negative
+        for(int i = 0; i < n; i++) {
+            int index = abs(nums[i]) - 1; // correct position for this number
+            if(nums[index] > 0) {
+                nums[index] = -nums[index]; // mark as visited
+            }
+        }
+
+        // Step 2: Collect all indices where value is positive -> missing number
+        vector<int> result;
+        for(int i = 0; i < n; i++) {
+            if(nums[i] > 0) {
+                result.push_back(i + 1);
+            }
+        }
+
+        return result;
+    }
+};
