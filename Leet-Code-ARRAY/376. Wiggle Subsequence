@@ -1,0 +1,26 @@
+class Solution {
+public:
+    int wiggleMaxLength(vector<int>& nums) {
+        int n = nums.size();
+        if(n == 1) return 1; 
+
+        int prevDiff = 0;
+        int currDiff = 0;
+        int count = 1; // At least 1 element is always a wiggle subsequence
+
+        for(int i = 1; i < n; i++){
+            currDiff = nums[i] - nums[i-1];
+
+            // Check for wiggle change: 
+            // positive after negative OR negative after positive
+            if((currDiff > 0 && prevDiff <= 0) ||
+               (currDiff < 0 && prevDiff >= 0)){
+                
+                count++;
+                prevDiff = currDiff; // update direction
+            }
+        }
+
+        return count;
+    }
+};
