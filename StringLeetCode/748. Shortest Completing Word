@@ -1,0 +1,41 @@
+class Solution {
+public:
+    string shortestCompletingWord(string licensePlate, vector<string>& words) {
+        vector<int> need(26, 0);
+
+        // Step 1: Count required characters from licensePlate
+        for (char c : licensePlate) {
+            if (isalpha(c)) {
+                need[tolower(c) - 'a']++;
+            }
+        }
+
+        string ans = "";
+        int minLen = INT_MAX;
+
+        // Step 2: Check each word
+        for (string word : words) {
+            vector<int> count(26, 0);
+
+            for (char c : word) {
+                count[c - 'a']++;
+            }
+
+            bool ok = true;
+            for (int i = 0; i < 26; i++) {
+                if (count[i] < need[i]) {
+                    ok = false;
+                    break;
+                }
+            }
+
+            // Step 3: Update answer
+            if (ok && word.length() < minLen) {
+                minLen = word.length();
+                ans = word;
+            }
+        }
+
+        return ans;
+    }
+};
