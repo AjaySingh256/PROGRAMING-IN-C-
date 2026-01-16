@@ -1,0 +1,30 @@
+class Solution {
+public:
+    int magicalString(int n) {
+        if (n == 0) return 0;
+
+        vector<int> s = {1, 2, 2};  // Magical string start
+        int i = 2;                 // Pointer
+        int num = 1;               // Next number to add
+
+        while (s.size() < n) {
+            int times = s[i];      // Repeat count
+
+            for (int j = 0; j < times; j++) {
+                s.push_back(num);
+            }
+
+            num = (num == 1) ? 2 : 1;  // Flip number
+            i++;
+        }
+
+        // Count number of 1s in first n elements
+        int count = 0;
+        for (int k = 0; k < n; k++) {
+            if (s[k] == 1)
+                count++;
+        }
+
+        return count;
+    }
+};
