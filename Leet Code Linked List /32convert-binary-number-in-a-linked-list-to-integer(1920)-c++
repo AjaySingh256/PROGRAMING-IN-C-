@@ -1,3 +1,4 @@
+// linked
 class Solution {
 public:
 ListNode* reverse(ListNode *&head) {
