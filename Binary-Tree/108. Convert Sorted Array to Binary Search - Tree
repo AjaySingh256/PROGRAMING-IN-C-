@@ -1,4 +1,4 @@
-// Convert Sorted Array to Binary Search - Tree
+// Convert Sorted Array to Binary Search - Trees 
 class Solution {
 public:
     TreeNode* sortedArrayToBST(vector<int>& nums) {
