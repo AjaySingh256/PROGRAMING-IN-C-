@@ -1,4 +1,4 @@
-// Node Class
+// Node Class as
 #include<iostream>
 using namespace std;
 class Node{//Link List Node
