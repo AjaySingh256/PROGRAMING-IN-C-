@@ -1,4 +1,4 @@
-//Passing Array in Function
+//Passing Array in Function as
 #include<iostream>
 using namespace std;
 void display(int a[]){
