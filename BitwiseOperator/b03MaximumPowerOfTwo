@@ -1,4 +1,4 @@
-//Find Maximum power Of two
+//Find Maximum power Of two num
 #include<iostream>
 using namespace std;
 int main()
