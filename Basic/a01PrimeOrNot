@@ -1,4 +1,4 @@
-//Prime Number hai
+//Prime Number hai?
 #include<iostream>
 using namespace std;
 int main()
