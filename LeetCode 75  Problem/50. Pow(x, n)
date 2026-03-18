@@ -1,0 +1,24 @@
+class Solution {
+public:
+    double myPow(double x, int n) {
+        long long N = n;
+
+        if(N < 0){
+            x = 1/x;
+            N = -N;
+        }
+
+        auto pw = [&](auto&& self, long long exp) -> double {
+            if(exp == 0) return 1;
+
+            if(exp % 2 == 0){
+                double half = self(self, exp/2);
+                return half * half;
+            }else{
+                return x * self(self, exp-1);
+            }
+        };
+
+        return pw(pw, N);
+    }
+};
