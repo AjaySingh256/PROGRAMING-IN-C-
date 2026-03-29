@@ -1,0 +1,23 @@
+class Solution {
+public:
+    void solve(string maping[], vector<string>& ans, string digit, string khali, int i) {
+        if(i >= digit.size()) {
+            ans.push_back(khali);
+            return;
+        }
+        int num = digit[i] - '0';
+        string temp = maping[num];
+        for(int j = 0; j < temp.size(); j++) {
+            khali.push_back(temp[j]);
+            solve(maping, ans, digit, khali, i+1);
+            khali.pop_back();
+        }
+    }
+    vector<string> letterCombinations(string digits) {
+        string maping[] = {"", "", "abc", "def", "ghi", "jkl", "mno", "pqrs", "tuv", "wxyz"};
+        string khali = "";
+        vector<string> ans;
+        solve(maping, ans, digits, khali, 0);
+        return ans;
+    }
+};
