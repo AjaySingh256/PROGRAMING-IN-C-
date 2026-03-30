@@ -1,0 +1,31 @@
+class Solution {
+public:
+// Time Complexity : 0(2n)
+// Space Complexity : 0(1)
+void Recursion( vector<int> nums , vector<int>Curr , vector<vector<int>>& Ans , int target , int idx , int k ){
+    // Base Case :
+    if( target == 0 && k == Curr.size()) {
+         Ans.push_back(Curr);
+         return ;
+    }
+
+    // Base Case :
+    if( target < 0 || idx == nums.size() ) return ;
+
+    // Include :
+     Curr.push_back(nums[idx]);
+     Recursion( nums , Curr , Ans , target - nums[idx] , idx + 1 , k);
+     Curr.pop_back();
+
+     // Exclude :
+     Recursion( nums , Curr , Ans , target , idx + 1 , k );
+
+}
+    vector<vector<int>> combinationSum3(int k, int target) {
+         vector<vector<int>>Ans;
+         vector<int>Curr;
+         vector<int>nums = { 1 , 2 , 3 , 4 , 5 , 6 , 7 , 8 ,9};
+         Recursion( nums , Curr , Ans , target , 0 , k );
+         return Ans;
+    }
+};
