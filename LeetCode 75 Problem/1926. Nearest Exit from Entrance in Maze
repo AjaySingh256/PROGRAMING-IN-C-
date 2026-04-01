@@ -1,0 +1,44 @@
+class Solution {
+public:
+    int nearestExit(vector<vector<char>>& maze, vector<int>& entrance) {
+        queue<pair<int, int>> q;
+        q.push({entrance[0], entrance[1]});
+        maze[entrance[0]][entrance[1]] = '+';
+        
+        int level = 0;
+        int rows = maze.size();
+        int cols = maze[0].size();
+        
+        while (!q.empty()) {
+            int size = q.size();
+            level++;
+            
+            for (int s = 0; s < size; s++) {
+                auto [r, c] = q.front();
+                q.pop();
+                
+                vector<pair<int, int>> directions = {{-1, 0}, {1, 0}, {0, -1}, {0, 1}};
+                
+                for (auto [dr, dc] : directions) {
+                    int nr = r + dr;
+                    int nc = c + dc;
+                    
+                    if (nr < 0 || nr >= rows || nc < 0 || nc >= cols) {
+                        continue;
+                    }
+                    
+                    if (maze[nr][nc] == '.') {
+                        if (nr == 0 || nc == 0 || nr == rows - 1 || nc == cols - 1) {
+                            return level;
+                        }
+                        
+                        maze[nr][nc] = '+';
+                        q.push({nr, nc});
+                    }
+                }
+            }
+        }
+        
+        return -1;
+    }
+};
