@@ -1,0 +1,28 @@
+class Solution {
+    vector<int>Memo;
+    int getMinCost(int n, vector<int>&cost, int i){
+        //We can start from 0 or 1
+        if(i == 0 || i == 1) return 0;
+
+        //If we have already computed, we simply return the stored value
+        if(Memo[i] != -1) return Memo[i];
+
+        //Get the cost if I moved from i-1
+        int oneStep = getMinCost(n, cost, i-1) + cost[i-1];
+        
+        //Get the cost if I moved from i-2
+        int twoStep = getMinCost(n, cost, i-2) + cost[i-2];
+
+        int Cost = min(oneStep, twoStep);
+        Memo[i] = Cost;
+        return Cost;
+    }
+public:
+    int minCostClimbingStairs(vector<int>& cost) {
+        int n = cost.size();
+        Memo = vector<int>(n+1, -1);
+        int Ans = getMinCost(n, cost, n);
+
+        return Ans;
+    }
+};
