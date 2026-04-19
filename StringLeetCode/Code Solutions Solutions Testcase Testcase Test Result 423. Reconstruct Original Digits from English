@@ -1,0 +1,109 @@
+class Solution {
+public:
+    string originalDigits(string s) {
+        string ans = "";
+        unordered_map<char, int>mp;
+
+        for(auto &x: s)
+        mp[x]++;
+
+        while(mp['w'] > 0)
+        {
+            ans.push_back('2');
+            mp['t']--;
+            mp['w']--;
+            mp['o']--;
+        }
+
+        while(mp['z'] > 0)
+        {
+            ans.push_back('0');
+            mp['z']--;
+            mp['e']--;
+            mp['r']--;
+            mp['o']--;
+        }
+
+        while(mp['u'] > 0)
+        {
+            ans.push_back('4');
+            mp['f']--;
+            mp['o']--;
+            mp['u']--;
+            mp['r']--;
+        }
+
+        while(mp['x'] > 0)
+        {
+            ans.push_back('6');
+            mp['s']--;
+            mp['i']--;
+            mp['x']--;
+        }
+
+        while(mp['g'] > 0)
+        {
+            ans.push_back('8');
+            mp['e']--;
+            mp['i']--;
+            mp['g']--;
+            mp['h']--;
+            mp['t']--;
+        }
+
+        if(mp['t'] > 0)
+        {
+            while(mp['t'] > 0)
+            {
+                mp['t']--;
+                ans.push_back('3');
+                mp['h']--;
+                mp['r']--;
+                mp['e']--;
+                mp['e']--;
+            }
+        }
+
+        if(mp['s'] > 0)
+        {
+            while(mp['s'] > 0)
+            {
+                mp['s']--;
+                ans.push_back('7');
+                mp['e']--;
+                mp['v']--;
+                mp['e']--;
+                mp['n']--;
+            }
+        }
+
+        while(mp['v'] > 0)
+        {
+            ans.push_back('5');
+            mp['f']--;
+            mp['i']--;
+            mp['v']--;
+            mp['e']--;
+        }
+
+        while(mp['i'] > 0)
+        {
+            ans.push_back('9');
+            mp['n']--;
+            mp['i']--;
+            mp['n']--;
+            mp['e']--;
+        }
+
+        while(mp['o'] > 0)
+        {
+            ans.push_back('1');
+            mp['o']--;
+            mp['n']--;
+            mp['e']--;
+        }
+
+        sort(ans.begin(), ans.end());
+        return ans;
+    }
+};
