@@ -1,0 +1,28 @@
+class Solution {
+public:
+    int thirdMax(vector<int>& nums) {
+
+        // To make the elements unique
+        set<int> s;
+        for (int i = 0; i < nums.size(); i++) {
+            s.insert(nums[i]);
+        }
+
+        // Push elements into a MAX HEAP
+        priority_queue<int> p;
+        for(auto i : s){
+            p.push(i);
+        }
+
+        if (p.size() < 3) {
+            return p.top();
+        }
+
+        // POP 2 TIMES
+        p.pop();
+        p.pop();
+
+        // Return ROOT [3rd MAX]
+        return p.top();
+    }
+};
