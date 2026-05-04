@@ -1,0 +1,35 @@
+class Solution {
+public:
+
+bool isSubSequence(string s1, string s2){
+       int i=0,j=0;
+       while(i<s1.size() && j<s2.size()){
+            if(s1[i] == s2[j]){
+                i++;j++;
+            } else j++;
+       }
+       return i==s1.size();
+}
+
+    int findLUSlength(vector<string>& strs) {
+        int n = strs.size();
+        sort(strs.begin(), strs.end(), [](string &a, string &b){
+    return a.size() > b.size();
+});
+        int maxLength = -1;
+
+        for(int i=0;i<n;i++){
+            bool isUncommon = true;
+            for(int j=0;j<n;j++){
+                if(i==j) continue;
+
+                if(isSubSequence(strs[i],strs[j])){
+                    isUncommon = false;
+                    break;
+                }         
+            }
+            if(isUncommon) return strs[i].size();
+        }
+        return -1;
+    }
+};
