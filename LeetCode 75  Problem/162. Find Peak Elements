@@ -11,7 +11,9 @@ public:
             if(nums[i - 1] < nums[i] && nums[i] > nums[i + 1])
                 return i;
 
-        // last element
+        // last eleme
+
+        // Ajay
         return n - 1;
     }
 };
