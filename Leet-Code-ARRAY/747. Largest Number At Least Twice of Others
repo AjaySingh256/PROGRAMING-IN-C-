@@ -1,0 +1,15 @@
+class Solution {
+public:
+    int dominantIndex(vector<int>& nums) {
+        int n = nums.size();
+        priority_queue< pair<int, int> > pq;
+        for(int i = 0 ; i < n ; i++){
+            pq.push({nums[i] , i});
+        }
+        auto a = pq.top();
+        pq.pop();
+        auto b = pq.top();
+        return (a.first / 2 >= b.first) ? a.second : -1;
+    
+    }
+};
